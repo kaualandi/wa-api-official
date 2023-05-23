@@ -14,6 +14,12 @@ let ReceiveMessageService = class ReceiveMessageService {
         receiveMessageDto === null || receiveMessageDto === void 0 ? void 0 : receiveMessageDto.entry.forEach((entry) => {
             entry.changes.forEach((messagingItem) => {
                 console.log('messagingItem', messagingItem);
+                messagingItem.contacts.forEach((contact) => {
+                    console.log('contact', contact);
+                });
+                messagingItem.messages.forEach((message) => {
+                    console.log('message', message);
+                });
             });
         });
         return { status: true };
