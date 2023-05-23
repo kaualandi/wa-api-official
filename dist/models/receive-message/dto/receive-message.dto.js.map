@@ -1,1 +1,1 @@
-{"version":3,"file":"receive-message.dto.js","sourceRoot":"","sources":["../../../../src/models/receive-message/dto/receive-message.dto.ts"],"names":[],"mappings":";;;AAAA,MAAa,iBAAiB;CAAG;AAAjC,8CAAiC"}
+{"version":3,"file":"receive-message.dto.js","sourceRoot":"","sources":["../../../../src/models/receive-message/dto/receive-message.dto.ts"],"names":[],"mappings":";;;AAMA,MAAa,iBAAiB;CAG7B;AAHD,8CAGC"}

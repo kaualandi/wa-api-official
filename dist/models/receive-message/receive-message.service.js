@@ -9,7 +9,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReceiveMessageService = void 0;
 const common_1 = require("@nestjs/common");
 let ReceiveMessageService = class ReceiveMessageService {
-    receive(receiveMessageDto) { }
+    receive(receiveMessageDto) {
+        console.log('receiveMessageDto', receiveMessageDto);
+        receiveMessageDto === null || receiveMessageDto === void 0 ? void 0 : receiveMessageDto.entry.forEach((entry) => {
+            entry.changes.forEach((messagingItem) => {
+                console.log('messagingItem', messagingItem);
+            });
+        });
+        return { status: true };
+    }
 };
 ReceiveMessageService = __decorate([
     (0, common_1.Injectable)()

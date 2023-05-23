@@ -21,8 +21,7 @@ let ReceiveMessageController = class ReceiveMessageController {
         this.receiveMessageService = receiveMessageService;
     }
     receive(receiveMessageDto) {
-        console.log('receiveMessageDto', receiveMessageDto);
-        return { status: true };
+        return this.receiveMessageService.receive(receiveMessageDto);
     }
     testToken(challenge) {
         console.log('challenge', challenge);

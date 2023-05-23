@@ -8,8 +8,7 @@ export class ReceiveMessageController {
 
   @Post()
   receive(@Body() receiveMessageDto: ReceiveMessageDto) {
-    console.log('receiveMessageDto', receiveMessageDto);
-    return { status: true };
+    return this.receiveMessageService.receive(receiveMessageDto);
   }
 
   @Get()
