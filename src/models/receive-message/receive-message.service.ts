@@ -9,10 +9,12 @@ export class ReceiveMessageService {
     receiveMessageDto?.entry.forEach((entry) => {
       entry.changes.forEach((messagingItem) => {
         console.log('messagingItem', messagingItem);
-        messagingItem.contacts.forEach((contact) => {
+        console.log('\n\nmessagingItem.contacts', messagingItem.contacts);
+        messagingItem.contacts?.forEach((contact) => {
           console.log('contact', contact);
         });
-        messagingItem.messages.forEach((message) => {
+        console.log('\n\nmessagingItem.messages', messagingItem.messages);
+        messagingItem.messages?.forEach((message) => {
           console.log('message', message);
         });
       });

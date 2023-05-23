@@ -13,11 +13,14 @@ let ReceiveMessageService = class ReceiveMessageService {
         console.log('receiveMessageDto', receiveMessageDto);
         receiveMessageDto === null || receiveMessageDto === void 0 ? void 0 : receiveMessageDto.entry.forEach((entry) => {
             entry.changes.forEach((messagingItem) => {
+                var _a, _b;
                 console.log('messagingItem', messagingItem);
-                messagingItem.contacts.forEach((contact) => {
+                console.log('\n\nmessagingItem.contacts', messagingItem.contacts);
+                (_a = messagingItem.contacts) === null || _a === void 0 ? void 0 : _a.forEach((contact) => {
                     console.log('contact', contact);
                 });
-                messagingItem.messages.forEach((message) => {
+                console.log('\n\nmessagingItem.messages', messagingItem.messages);
+                (_b = messagingItem.messages) === null || _b === void 0 ? void 0 : _b.forEach((message) => {
                     console.log('message', message);
                 });
             });
