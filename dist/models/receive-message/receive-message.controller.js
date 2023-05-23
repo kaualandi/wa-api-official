@@ -23,6 +23,9 @@ let ReceiveMessageController = class ReceiveMessageController {
     receive(receiveMessageDto) {
         return this.receiveMessageService.receive(receiveMessageDto);
     }
+    testToken() {
+        return { status: true };
+    }
 };
 __decorate([
     (0, common_1.Post)(),
@@ -31,6 +34,12 @@ __decorate([
     __metadata("design:paramtypes", [receive_message_dto_1.ReceiveMessageDto]),
     __metadata("design:returntype", void 0)
 ], ReceiveMessageController.prototype, "receive", null);
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], ReceiveMessageController.prototype, "testToken", null);
 ReceiveMessageController = __decorate([
     (0, common_1.Controller)('receive-message'),
     __metadata("design:paramtypes", [receive_message_service_1.ReceiveMessageService])

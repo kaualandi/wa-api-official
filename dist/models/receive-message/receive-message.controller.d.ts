@@ -4,4 +4,7 @@ export declare class ReceiveMessageController {
     private readonly receiveMessageService;
     constructor(receiveMessageService: ReceiveMessageService);
     receive(receiveMessageDto: ReceiveMessageDto): void;
+    testToken(): {
+        status: boolean;
+    };
 }
