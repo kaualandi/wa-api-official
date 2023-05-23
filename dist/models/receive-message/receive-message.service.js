@@ -9,9 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReceiveMessageService = void 0;
 const common_1 = require("@nestjs/common");
 let ReceiveMessageService = class ReceiveMessageService {
-    receive(receiveMessageDto) {
-        console.log(receiveMessageDto);
-    }
+    receive(receiveMessageDto) { }
 };
 ReceiveMessageService = __decorate([
     (0, common_1.Injectable)()

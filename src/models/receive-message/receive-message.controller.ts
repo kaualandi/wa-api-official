@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { ReceiveMessageDto } from './dto/receive-message.dto';
 import { ReceiveMessageService } from './receive-message.service';
 
@@ -8,11 +8,13 @@ export class ReceiveMessageController {
 
   @Post()
   receive(@Body() receiveMessageDto: ReceiveMessageDto) {
-    return this.receiveMessageService.receive(receiveMessageDto);
+    console.log('receiveMessageDto', receiveMessageDto);
+    return { status: true };
   }
 
   @Get()
-  testToken() {
-    return { status: true };
+  testToken(@Query('hub.challenge') challenge: string) {
+    console.log('challenge', challenge);
+    return challenge;
   }
 }

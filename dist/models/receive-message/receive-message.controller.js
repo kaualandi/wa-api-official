@@ -21,10 +21,12 @@ let ReceiveMessageController = class ReceiveMessageController {
         this.receiveMessageService = receiveMessageService;
     }
     receive(receiveMessageDto) {
-        return this.receiveMessageService.receive(receiveMessageDto);
-    }
-    testToken() {
+        console.log('receiveMessageDto', receiveMessageDto);
         return { status: true };
+    }
+    testToken(challenge) {
+        console.log('challenge', challenge);
+        return challenge;
     }
 };
 __decorate([
@@ -36,8 +38,9 @@ __decorate([
 ], ReceiveMessageController.prototype, "receive", null);
 __decorate([
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)('hub.challenge')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ReceiveMessageController.prototype, "testToken", null);
 ReceiveMessageController = __decorate([

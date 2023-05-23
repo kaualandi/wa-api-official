@@ -3,8 +3,8 @@ import { ReceiveMessageService } from './receive-message.service';
 export declare class ReceiveMessageController {
     private readonly receiveMessageService;
     constructor(receiveMessageService: ReceiveMessageService);
-    receive(receiveMessageDto: ReceiveMessageDto): void;
-    testToken(): {
+    receive(receiveMessageDto: ReceiveMessageDto): {
         status: boolean;
     };
+    testToken(challenge: string): string;
 }
