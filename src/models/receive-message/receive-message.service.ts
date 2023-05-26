@@ -10,12 +10,19 @@ export class ReceiveMessageService {
       entry.changes.forEach((messagingItem) => {
         console.log('messagingItem', messagingItem);
 
-        console.log('\n\nmessagingItem.contacts', messagingItem.contacts);
-        messagingItem.contacts?.forEach((contact) => {
+        console.log(
+          '\n\nmessagingItem.contacts',
+          messagingItem.value?.contacts,
+        );
+        messagingItem?.value.contacts?.forEach((contact) => {
           console.log('contact', contact);
         });
-        console.log('\n\nmessagingItem.messages', messagingItem.messages);
-        messagingItem.messages?.forEach((message) => {
+
+        console.log(
+          '\n\nmessagingItem.messages',
+          messagingItem.value?.messages,
+        );
+        messagingItem?.value.messages?.forEach((message) => {
           console.log('message', message);
         });
       });
