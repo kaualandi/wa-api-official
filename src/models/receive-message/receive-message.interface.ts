@@ -3,12 +3,8 @@ interface MessageDataMetadata {
   phone_number_id: string;
 }
 
-interface ContactProfile {
-  name: string;
-}
-
 interface DataValueContact {
-  profile: ContactProfile;
+  profile: { name: string };
   wa_id: string;
 }
 
@@ -43,6 +39,15 @@ interface MessageStickerType extends MessageMimeType {
   animated: boolean;
 }
 
+interface MessageContactType {
+  name: { first_name: string; formatted_name: string };
+  phones: {
+    phone: string;
+    wa_id: string;
+    type: string;
+  }[];
+}
+
 interface DataValueMessage {
   from: string;
   id: string;
@@ -64,7 +69,7 @@ interface DataValueMessage {
   document?: MessageDocumentType;
   location?: MessageLocationType;
   sticker?: MessageStickerType;
-  contacts?: any[];
+  contacts?: MessageContactType[];
 }
 
 interface MessageDataValue {

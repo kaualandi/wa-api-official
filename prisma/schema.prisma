@@ -33,6 +33,28 @@ enum ValidationType {
   EXIST_VALUE_IN_DB
 }
 
+// TODO: model Template(url // em toda req, levar número e opção selecionada), TemplateParams(urlParam, paramNumber)
+
+model SelectTypeOption {
+  id             Int        @id @default(autoincrement())
+  identifier     String
+  value          String
+  template       String
+  select_type    SelectType @relation(fields: [select_type_id], references: [id])
+  select_type_id Int
+  created_at     DateTime   @default(now())
+  updated_at     DateTime   @updatedAt
+}
+
+model SelectType {
+  id                  Int                @id @default(autoincrement())
+  Step                Step               @relation(fields: [step_id], references: [id])
+  step_id             Int
+  select_type_options SelectTypeOption[]
+  created_at          DateTime           @default(now())
+  updated_at          DateTime           @updatedAt
+}
+
 model Validation {
   id             Int            @id @default(autoincrement())
   type           ValidationType
@@ -50,6 +72,10 @@ model Step {
   order       Int
   type        StepType
   validations Validation[]
+  select_type SelectType[]
+  save_table  String?
+  save_column String?
+  template    String?
   created_at  DateTime     @default(now())
   updated_at  DateTime     @updatedAt
   user        User         @relation(fields: [userId], references: [id])
