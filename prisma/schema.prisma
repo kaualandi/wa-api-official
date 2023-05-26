@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum StepType {
+  INPUT_TEXT
+  INPUT_NUMBER
+  INPUT_DATE
+  INPUT_TIME
+  INPUT_EMAIL
+  INPUT_PHONE
+  INPUT_URL
+  SELECT
+}
+
+enum ValidationType {
+  API
+  REGEX_TEST
+  REGEX_REPLACE
+  MIN
+  MAX
+  MIN_LENGTH
+  MAX_LENGTH
+  EXIST_ID_IN_DB
+  EXIST_VALUE_IN_DB
+}
+
+model Validation {
+  id             Int            @id @default(autoincrement())
+  type           ValidationType
+  value          String
+  api_return_key String?
+  step           Step           @relation(fields: [step_id], references: [id])
+  step_id        Int
+  created_at     DateTime       @default(now())
+  updated_at     DateTime       @updatedAt
+}
+
+model Step {
+  id          Int          @id @default(autoincrement())
+  name        String
+  order       Int
+  type        StepType
+  validations Validation[]
+  created_at  DateTime     @default(now())
+  updated_at  DateTime     @updatedAt
+  user        User         @relation(fields: [userId], references: [id])
+  userId      Int
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  name       String?
+  password   String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  steps      Step[]
+}

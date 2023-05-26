@@ -23,7 +23,7 @@ export class SendMessageService {
       ...sendMessageDto,
     };
     data.template.language = {
-      code: 'en_US',
+      code: 'pt_BR',
     };
 
     return this.http

@@ -27,7 +27,7 @@ let SendMessageService = class SendMessageService {
     send(sendMessageDto) {
         const data = Object.assign({ type: 'template', messaging_product: 'whatsapp' }, sendMessageDto);
         data.template.language = {
-            code: 'en_US',
+            code: 'pt_BR',
         };
         return this.http
             .post(`${this.baseUrl}/messages`, data, this.config)
