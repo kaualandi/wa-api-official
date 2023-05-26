@@ -13,14 +13,14 @@ let ReceiveMessageService = class ReceiveMessageService {
         console.log('receiveMessageDto', receiveMessageDto);
         receiveMessageDto === null || receiveMessageDto === void 0 ? void 0 : receiveMessageDto.entry.forEach((entry) => {
             entry.changes.forEach((messagingItem) => {
-                var _a, _b;
+                var _a, _b, _c, _d;
                 console.log('messagingItem', messagingItem);
-                console.log('\n\nmessagingItem.contacts', messagingItem.contacts);
-                (_a = messagingItem.contacts) === null || _a === void 0 ? void 0 : _a.forEach((contact) => {
+                console.log('\n\nmessagingItem.contacts', (_a = messagingItem.value) === null || _a === void 0 ? void 0 : _a.contacts);
+                (_b = messagingItem === null || messagingItem === void 0 ? void 0 : messagingItem.value.contacts) === null || _b === void 0 ? void 0 : _b.forEach((contact) => {
                     console.log('contact', contact);
                 });
-                console.log('\n\nmessagingItem.messages', messagingItem.messages);
-                (_b = messagingItem.messages) === null || _b === void 0 ? void 0 : _b.forEach((message) => {
+                console.log('\n\nmessagingItem.messages', (_c = messagingItem.value) === null || _c === void 0 ? void 0 : _c.messages);
+                (_d = messagingItem === null || messagingItem === void 0 ? void 0 : messagingItem.value.messages) === null || _d === void 0 ? void 0 : _d.forEach((message) => {
                     console.log('message', message);
                 });
             });
