@@ -1,24 +1,5 @@
-interface MessageDataMetadata {
-    display_phone_number: string;
-    phone_number_id: string;
-}
-interface MessageDataValue {
-    messaging_product: 'whatsapp';
-    metadata: MessageDataMetadata;
-    contacts: any[];
-    messages: any[];
-}
-interface MessageData {
-    value: MessageDataValue;
-    field: string;
-}
-interface Entry {
-    id: string;
-    time?: number;
-    changes: MessageData[];
-}
+import { EntryMessage } from '../receive-message.interface';
 export declare class ReceiveMessageDto {
     object: string;
-    entry: Entry[];
+    entry: EntryMessage[];
 }
-export {};
