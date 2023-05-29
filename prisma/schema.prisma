@@ -29,17 +29,35 @@ enum ValidationType {
   MAX
   MIN_LENGTH
   MAX_LENGTH
-  EXIST_ID_IN_DB
-  EXIST_VALUE_IN_DB
 }
 
-// TODO: model Template(url // em toda req, levar número e opção selecionada), TemplateParams(urlParam, paramNumber)
+model TemplateParams {
+  id          Int       @id @default(autoincrement())
+  url_param   String
+  wa_param_id Int
+  template    Template? @relation(fields: [template_id], references: [id])
+  template_id Int?
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+}
+
+model Template {
+  id               Int                @id @default(autoincrement())
+  name             String
+  url              String // sempre levar dados do user, current step // se o status for 200: espera receber sempre o proximo step, se não, retorna o template de erro definido no Step
+  params           TemplateParams[]
+  created_at       DateTime           @default(now())
+  updated_at       DateTime           @updatedAt
+  Step             Step[]
+  SelectTypeOption SelectTypeOption[]
+}
 
 model SelectTypeOption {
   id             Int        @id @default(autoincrement())
   identifier     String
   value          String
-  template       String
+  template       Template   @relation(fields: [template_id], references: [id])
+  template_id    Int
   select_type    SelectType @relation(fields: [select_type_id], references: [id])
   select_type_id Int
   created_at     DateTime   @default(now())
@@ -56,38 +74,52 @@ model SelectType {
 }
 
 model Validation {
-  id             Int            @id @default(autoincrement())
-  type           ValidationType
-  value          String
-  api_return_key String?
-  step           Step           @relation(fields: [step_id], references: [id])
-  step_id        Int
-  created_at     DateTime       @default(now())
-  updated_at     DateTime       @updatedAt
+  id         Int            @id @default(autoincrement())
+  type       ValidationType
+  value      String
+  step       Step           @relation(fields: [step_id], references: [id])
+  step_id    Int
+  created_at DateTime       @default(now())
+  updated_at DateTime       @updatedAt
 }
 
 model Step {
-  id          Int          @id @default(autoincrement())
-  name        String
-  order       Int
-  type        StepType
-  validations Validation[]
-  select_type SelectType[]
-  save_table  String?
-  save_column String?
-  template    String?
-  created_at  DateTime     @default(now())
-  updated_at  DateTime     @updatedAt
-  user        User         @relation(fields: [userId], references: [id])
-  userId      Int
+  id             Int          @id @default(autoincrement())
+  name           String
+  order          Int          @unique // identificador do step
+  type           StepType
+  template       Template?    @relation(fields: [template_id], references: [id])
+  template_id    Int?
+  panel_user     PanelUser    @relation(fields: [panel_user_id], references: [id])
+  panel_user_id  Int
+  error_template String
+  created_at     DateTime     @default(now())
+  updated_at     DateTime     @updatedAt
+  validations    Validation[]
+  select_type    SelectType[]
+  Talk_user      TalkUser[]
 }
 
-model User {
-  id         Int      @id @default(autoincrement())
-  email      String   @unique
+model TalkUser {
+  id            Int       @id @default(autoincrement())
+  name          String?
+  phone         String
+  panel_user    PanelUser @relation(fields: [panel_user_id], references: [id])
+  panel_user_id Int
+  step          Step      @relation(fields: [step_id], references: [id])
+  step_id       Int
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
+}
+
+model PanelUser {
+  id         Int        @id @default(autoincrement())
+  email      String     @unique
   name       String?
+  phone      String
   password   String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
   steps      Step[]
+  TalkUser   TalkUser[]
 }
