@@ -86,7 +86,6 @@ model Validation {
 model Step {
   id             Int          @id @default(autoincrement())
   name           String
-  order          Int          @unique // identificador do step
   type           StepType
   template       Template?    @relation(fields: [template_id], references: [id])
   template_id    Int?

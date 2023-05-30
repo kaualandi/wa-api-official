@@ -1,9 +1,9 @@
-interface MessageDataMetadata {
+export interface MessageDataMetadata {
   display_phone_number: string;
   phone_number_id: string;
 }
 
-interface DataValueContact {
+export interface DataValueContact {
   profile: { name: string };
   wa_id: string;
 }
