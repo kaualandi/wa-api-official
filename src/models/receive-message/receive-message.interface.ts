@@ -72,7 +72,7 @@ interface DataValueMessage {
   contacts?: MessageContactType[];
 }
 
-interface MessageDataValue {
+export interface MessageDataValue {
   messaging_product: 'whatsapp';
   metadata: MessageDataMetadata;
 

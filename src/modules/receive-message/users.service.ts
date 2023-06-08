@@ -9,6 +9,24 @@ import {
 export class UsersService {
   constructor(private readonly prismaService: PrismaService) {}
 
+  findInclude = {
+    step: {
+      include: {
+        validations: true,
+        template: true,
+        select_types: {
+          include: {
+            select_type_options: {
+              include: {
+                template: true,
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
   async checkWaba(metadata: MessageDataMetadata) {
     const panelUserData = await this.prismaService.panelUser.findUnique({
       where: {
@@ -37,6 +55,7 @@ export class UsersService {
         panel_user_id: panelUserId,
         step_id: 0,
       },
+      include: this.findInclude,
     });
 
     return panelUserCreated;
@@ -48,6 +67,7 @@ export class UsersService {
         panel_user_id: panelUserId,
         phone: contact.wa_id,
       },
+      include: this.findInclude,
     });
 
     if (talkUsers.length === 0) {
